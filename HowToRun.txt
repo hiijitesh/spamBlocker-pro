@@ -1,0 +1,7 @@
+#1 Fill .env file according to local Database name and Password.
+
+#2 Run npm install.
+
+#3 Run node app.js
+
+#4 Now test each route which are there in "routes" folder.
