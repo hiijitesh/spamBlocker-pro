@@ -3,8 +3,11 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const helper = require("../helpers/helper");
+// to validate email, phone, password
+const helper = require("../helpers/validator.helper");
 
+
+// DB instance of mysql
 const { db } = require("../database/db_config");
 const User = db.user;
 const JWTRefreshToken = db.refreshtoken;
@@ -27,12 +30,9 @@ function generateJWTToken(user, token_type) {
   return jwt_token;
 }
 
-// This endpoint is used for User signup.
+// User signup function
 async function userSignup(req, res) {
-  let phone = req.body.phone;
-  let password = req.body.password;
-  let name = req.body.name;
-  let email = req.body.email;
+  let {phone, password, name, email} = req.body;
 
   if (!name || !password || !phone) {
     res.status(400).json({ error: "Empty Name/Phone/Password." });
@@ -53,6 +53,7 @@ async function userSignup(req, res) {
     return;
   }
 
+  //check user already have signup
   try {
     const existingUser = await User.findOne({ where: { phone } });
 
@@ -63,6 +64,7 @@ async function userSignup(req, res) {
       return;
     }
 
+    //user is new, hash the password
     hashed_password = await bcrypt.hash(password, 10);
 
     const newUser = {
@@ -71,10 +73,11 @@ async function userSignup(req, res) {
       password: hashed_password,
     };
 
+    //since email is optional so we can add if email if it does exist
     if (email) {
       newUser.email = email;
     }
-
+    //update username of user else create new user
     if (existingUser && existingUser.name == "NULL") {
       await User.update(newUser, { where: { id: existingUser.id } });
     } else {
@@ -82,17 +85,19 @@ async function userSignup(req, res) {
     }
 
     res.status(201).json({ message: "User created successfully" });
+
   } catch (error) {
     res.status(500).json({ error: "User signup failed." });
     return;
   }
 }
 
-// This endpoint is used for userLogin
+// user Login function
 async function userLogin(req, res) {
   let phone = req.body.phone;
   let password = req.body.password;
 
+  //check phone or password is missing/empty
   if (!phone || !password) {
     res
       .status(400)
@@ -100,6 +105,7 @@ async function userLogin(req, res) {
     return;
   }
 
+  //find user in DB using phone number
   try {
     const user = await User.findOne({ where: { phone } });
 
@@ -108,6 +114,7 @@ async function userLogin(req, res) {
       return;
     }
 
+    //compare the user entered password and DB password of the user
     const matchPassword = await bcrypt.compare(password, user.password);
 
     if (!matchPassword) {
@@ -190,6 +197,8 @@ async function userLogout(req, res) {
   }
 }
 
+
+//since email was optional so we can add email later on
 async function addUserEmail(req, res) {
   const email = req.body.email;
 
