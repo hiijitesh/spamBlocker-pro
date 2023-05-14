@@ -20,6 +20,6 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{ timestamps: false }
-	);
-	return user;
-};
+	)
+	return user
+}

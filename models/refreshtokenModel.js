@@ -8,6 +8,6 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{ timestamps: false }
-	);
-	return refreshtoken;
-};
+	)
+	return refreshtoken
+}

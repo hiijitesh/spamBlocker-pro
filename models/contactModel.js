@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 		},
 		{ timestamps: false }
-	);
+	)
 
-	return contact;
-};
+	return contact
+}
