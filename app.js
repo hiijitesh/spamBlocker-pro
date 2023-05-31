@@ -6,8 +6,7 @@ const app = express()
 
 const authenticationRoutes = require("./routes/authRoute")
 const contactRoutes = require("./routes/contactRoute")
-
-const isAuthenticated = require("./middlewares/isAuthenticated")
+const isAuthenticated = require("./middlewares/checkAuthentication")
 
 app.use(express.json())
 

@@ -1,7 +1,7 @@
 const { db } = require("../database/dbConfig")
 const { Op } = require("sequelize")
 
-const helper = require("../helpers/helper")
+const helper = require("../helpers/validatorHelper")
 
 const User = db.user
 const Contact = db.contact
