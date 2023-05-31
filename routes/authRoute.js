@@ -1,22 +1,18 @@
-const express = require('express');
+const express = require("express")
 
-const checkAuthentication = require('../middlewares/checkAuthentication');
-const authenticationController = require('../controllers/authenticationController');
+const isAuthenticated = require("../middlewares/checkAuthentication")
+const authController = require("../controllers/authController")
 
-const router = express.Router();
+const router = express.Router()
 
-router.post('/signup', authenticationController.userSignup);
+router.post("/signup", authController.userSignup)
 
-router.post('/login', authenticationController.userLogin);
+router.post("/login", authController.userLogin)
 
-router.post('/logout', authenticationController.userLogout);
+router.post("/logout", authController.userLogout)
 
-router.post('/get-access-token', authenticationController.getAccessToken);
+router.post("/get-access-token", authController.getAccessToken)
 
-router.post(
-	'/add-user-email',
-	checkAuthentication,
-	authenticationController.addUserEmail
-);
+router.post("/add-user-email", isAuthenticated, authController.addUserEmail)
 
-module.exports = router;
+module.exports = router

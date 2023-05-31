@@ -1,6 +1,6 @@
-require('dotenv').config()
+require("dotenv").config()
 
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken")
 
 function verifyToken(jwt_token) {
 	let decoded = {}
@@ -14,18 +14,18 @@ function verifyToken(jwt_token) {
 	return decoded
 }
 
-function checkAuthentication(req, res, next) {
+function isAuthenticated(req, res, next) {
 	const authorizationToken = req.headers.authorization
 
 	let token
 
 	if (authorizationToken) {
-		token = authorizationToken.split(' ')[1]
+		token = authorizationToken.split(" ")[1]
 	}
 
 	if (!token) {
 		return res.status(401).json({
-			error: 'You are not authorized',
+			error: "You are not authorized",
 		})
 	}
 
@@ -33,7 +33,7 @@ function checkAuthentication(req, res, next) {
 
 	if (Object.keys(decoded).length === 0) {
 		return res.status(401).json({
-			message: 'Unauthorized',
+			message: "Unauthorized",
 		})
 	}
 
@@ -41,4 +41,4 @@ function checkAuthentication(req, res, next) {
 	next()
 }
 
-module.exports = checkAuthentication
+module.exports = isAuthenticated

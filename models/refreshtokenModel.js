@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 	const refreshtoken = sequelize.define(
-		'refreshtoken',
+		"refreshtoken",
 		{
 			token: {
 				type: DataTypes.STRING,

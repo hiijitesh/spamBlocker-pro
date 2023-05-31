@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express")
 
-const contactController = require('../controllers/contactController');
+const contactController = require("../controllers/contactController")
 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/search-contact', contactController.searchContact);
+router.get("/search-contact", contactController.searchContact)
 
-router.post('/add-new-contact', contactController.addNewContact);
+router.post("/add-new-contact", contactController.addNewContact)
 
-router.post('/mark-contact-as-spam', contactController.markContactAsSapm);
+router.post("/mark-contact-as-spam", contactController.markContactAsSapm)
 
-module.exports = router;
+module.exports = router
