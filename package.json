@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app",
+    "test":"npx jest --passWithNoTests",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-and-fix": "eslint . --ext .js --fix",
     "format": "prettier --write .",
