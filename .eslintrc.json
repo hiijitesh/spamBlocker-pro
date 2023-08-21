@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["google", "prettier"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": ["error"]
+      }
+    ],
+    "camelcase": "off",
+    "quotes": ["error", "double"],
+    "no-const-assign": "error",
+    "no-constant-binary-expression": "error",
+    "no-dupe-args": "error",
+    "no-dupe-else-if": "error",
+    "require-jsdoc": "off",
+    "new-cap": "off",
+    "no-self-assign": [
+      "error",
+      {
+        "props": true
+      }
+    ],
+    "no-template-curly-in-string": "error",
+    "no-unreachable": "error",
+    "curly": "error",
+    "default-param-last": ["error"],
+    "prefer-template": "error",
+    "require-await": "error"
+  },
+  "globals": {
+    "__config": true,
+    "__constant": true,
+    "__utils": true
+  }
+}
