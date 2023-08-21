@@ -22,3 +22,8 @@ touch .lintstagedrc-eslint
 npm install --save-dev --save-exact prettier
 #for installing eslint:
 npm install eslint --save-dev
+
+#debug
+npm cache clean --force
+# replace head with commit id
+npx commitlint --from=HEAD~1

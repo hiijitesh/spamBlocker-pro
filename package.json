@@ -1,11 +1,11 @@
 {
   "name": "spam-blocker",
-  "version": "2023.08.21",
+  "version": "2023.08.22",
   "description": "",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app",
-    "test":"npx jest --passWithNoTests",
+    "test": "npx jest --passWithNoTests",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-and-fix": "eslint . --ext .js --fix",
     "format": "prettier --write .",
