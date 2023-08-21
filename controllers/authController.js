@@ -9,20 +9,20 @@ const helper = require("../helpers/validator");
 // DB instance of mysql
 const { db } = require("../database/dbConfig");
 const User = db.user;
-const JWTRefreshToken = db.refreshtoken;
+const JWTRefreshToken = db.refreshToken;
 
 // This function is used for generating or signing JWT token.
 function generateJWTToken(user, token_type) {
-  let jwt_token;
+  let token;
 
   if (token_type === "access") {
-    jwt_token = jwt.sign({ phone: user.phone, id: user.id }, process.env.ACCESS_TOKEN, {
+    token = jwt.sign({ phone: user.phone, id: user.id }, process.env.ACCESS_TOKEN, {
       expiresIn: "30m",
     });
   } else {
-    jwt_token = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN);
+    token = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN);
   }
-  return jwt_token;
+  return token;
 }
 
 // User signup function
@@ -56,12 +56,12 @@ async function userSignup(req, res) {
     }
 
     // user is new, hash the password
-    hashed_password = await bcrypt.hash(password, 10);
+    hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
       name: name,
       phone: phone,
-      password: hashed_password,
+      password: hashedPassword,
     };
 
     // since email is optional so we can add if email if it does exist
@@ -84,8 +84,7 @@ async function userSignup(req, res) {
 
 // user Login function
 async function userLogin(req, res) {
-  const phone = req.body.phone;
-  const password = req.body.password;
+  const { phone, password } = req.body;
 
   // check phone or password is missing/empty
   if (!phone || !password) {
@@ -119,7 +118,7 @@ async function userLogin(req, res) {
     res.status(200).json({
       access_token,
       refresh_token,
-      message: "Login successfull",
+      message: "Login successful",
     });
   } catch (error) {
     res.status(500).json({ error: "Login failed. Try again!" });
@@ -182,7 +181,7 @@ async function userLogout(req, res) {
 
     await currentRefreshToken.destroy();
 
-    res.status(200).json({ message: "Logout successfull" });
+    res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     res.status(500).json({ error: "Logout failed. Try again" });
     return;
@@ -210,7 +209,7 @@ async function addUserEmail(req, res) {
 
     await User.update({ email }, { where: { id: existingUser.id } });
 
-    res.status(201).json({ message: "Email added succesfully." });
+    res.status(201).json({ message: "Email added successfully." });
   } catch (error) {
     res.status(500).json({ error: "Adding the email failed. Try again" });
     return;

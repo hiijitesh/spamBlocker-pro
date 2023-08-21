@@ -7,13 +7,13 @@ const app = express();
 
 const authenticationRoutes = require("./routes/authRoute");
 const contactRoutes = require("./routes/contactRoute");
-const isAuthenticated = require("./middlewares/Auth");
+const AuthMiddleware = require("./middlewares/Auth");
 
 app.use(express.json());
 
 app.use(authenticationRoutes);
-app.use(isAuthenticated);
-app.use(contactRoutes);
+// app.use(isAuthenticated);
+app.use(AuthMiddleware, contactRoutes);
 
 dbConnection()
   .then(function () {

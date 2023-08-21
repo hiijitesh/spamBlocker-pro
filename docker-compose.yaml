@@ -7,7 +7,7 @@ services:
     depends_on:
       - db
     volumes:
-       - .:/app:z
+      - .:/app:z
   db:
     image: mysql:5.7
     container_name: mysql

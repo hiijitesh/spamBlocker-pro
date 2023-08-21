@@ -2,7 +2,7 @@ const contactController = require("../controllers/contactController");
 const router = require("express").Router();
 
 router.get("/search-contact", contactController.searchContact);
-router.post("/add-new-contact", contactController.addNewContact);
-router.post("/mark-contact-as-spam", contactController.markContactAsSapm);
+router.post("/add-contact", contactController.addNewContact);
+router.post("/mark-spam", contactController.markContactAsSpam);
 
 module.exports = router;

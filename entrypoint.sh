@@ -1,5 +1,5 @@
 # npm install -g json
-date=$(date +%Y.%m.%d)
+date=$(date +%d.%m.%Y)
 echo "checking out to dev branch"
 git checkout dev
 echo "Date"  $date

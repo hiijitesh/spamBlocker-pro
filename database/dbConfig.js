@@ -20,7 +20,7 @@ const db = {
 
 // Define the models instances and store them in the `db` object.
 db.contact = require("../models/contactModel")(sequelize, DataTypes);
-db.refreshtoken = require("../models/refreshtokenModel")(sequelize, DataTypes);
+db.refreshToken = require("../models/refreshTokenModel")(sequelize, DataTypes);
 db.spam = require("../models/spamModel")(sequelize, DataTypes);
 db.user = require("../models/userModel")(sequelize, DataTypes);
 

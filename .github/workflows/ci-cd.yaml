@@ -3,47 +3,44 @@ name: CI/CD Pipeline for Spam-Blocker
 on:
   push:
     branches:
-      - dev  # Change this to the appropriate branch name
+      - dev # Change this to the appropriate branch name
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14' # You can specify the Node.js version here
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # You can specify the Node.js version here
 
-    - name: Install dependencies
-      run: |
-        npm install --omit=dev 
-        npm update
-        npm audit fix --force
+      - name: Install dependencies
+        run: |
+          npm install
+          npm update
+          npm audit fix --force
 
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Login to Docker Hub
-      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-
-    - name: Build and push Docker image
-      run: |
-        date=$(date +%Y.%m.%d)
-        echo "Building..."
-        echo "Date"  $date
-        echo "checkout to dev"
-        git checkout dev
-        echo "Version: " $date 
-        echo "Docker Build Started"
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date .
-        echo "Docker Build complete"
-        echo "Pushing image to Dockerhub"
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date
-        echo "Docker Push complete"
-        echo "Deploying the container"
-        docker-compose down && docker-compose up -d
-        echo "Deployment finished"
-        
-        
+      - name: Build and push Docker image
+        run: |
+          date=$(date +%d.%m.%Y)
+          echo "Building..."
+          echo "Date"  $date
+          echo "checkout to dev"
+          git checkout dev
+          echo "Version: " $date 
+          echo "Docker Build Started"
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date .
+          echo "Docker Build complete"
+          echo "Pushing image to Dockerhub"
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date
+          echo "Docker Push complete"
+          echo "Deploying the container"
+          docker-compose down && docker-compose up -d
+          echo "Deployment finished"

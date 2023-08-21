@@ -164,7 +164,7 @@ async function addNewContact(req, res) {
   }
 }
 
-async function markContactAsSapm(req, res) {
+async function markContactAsSpam(req, res) {
   const phoneNumber = req.body.phoneNumber;
   const spamMarkedById = req.userInfo.id;
 
@@ -224,5 +224,5 @@ async function markContactAsSapm(req, res) {
 module.exports = {
   searchContact,
   addNewContact,
-  markContactAsSapm,
+  markContactAsSpam,
 };
