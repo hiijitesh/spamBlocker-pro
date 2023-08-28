@@ -29,21 +29,21 @@ async function searchContact(req, res) {
 
   try {
     if (searchedName) {
-      const searched_users = await User.findAll({
+      const usersData = await User.findAll({
         attributes: ["id", "name", "phone"],
         where: {
           [Op.or]: [{ name: { [Op.startsWith]: searchedName } }, { name: { [Op.substring]: searchedName } }],
         },
       });
 
-      if (!searched_users || searched_users.length == 0) {
+      if (!usersData || usersData.length == 0) {
         res.status(400).json({ error: "No user found." });
         return;
       }
 
       const search_results = [];
 
-      for (const user of searched_users) {
+      for (const user of usersData) {
         const temporary_user = { ...user.dataValues };
 
         temporary_user.spam_count = await Spam.count({
