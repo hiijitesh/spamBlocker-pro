@@ -15,7 +15,7 @@ SpamBlocker-Pro Backend Clone with spam caller identification.
 
 ##How to use
 mysql -h localhost -u root -p
-CREATE DATABASE spmadb;
+CREATE DATABASE spamdb;
 SHOW DATABASES;
 
 npm install eslint@^8.38.0 eslint-config-prettier@^8.5.0 eslint-config-standard@^17.0.0 eslint-plugin-import@^2.26.0 eslint-plugin-n@^15.6.0 eslint-plugin-prettier@^4.2.1 eslint-plugin-promise@^6.1.1 prettier@^2.8.4 --save-dev
