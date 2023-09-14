@@ -13,7 +13,7 @@ SpamBlocker-Pro Backend Clone with spam caller identification.
 - Engineered search functionality to facilitate efficient contact search by name or phone number, resulting in 30%
   the surge in user engagement and a 25% increase in user retention
 
-##How to use
+## How to use
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
