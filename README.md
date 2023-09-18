@@ -2,15 +2,6 @@
 
 SpamBlocker-Pro with spam caller identification.
 
-## Run these commands
-
-`npm i`
-`rename .env.example to .env then fill all field`
-
-## fill dotenv `.env` file
-
-`require('crypto').randomBytes(64).toString('hex')`
-
 - Developed RESTful API using Node.js and Express.js for spam-blocking web application with MySQL database,
   empowering users to report and search spam numbers.
 
@@ -18,6 +9,22 @@ SpamBlocker-Pro with spam caller identification.
 
 - Engineered search functionality to facilitate efficient contact search by name or phone number, resulting in 30%
   the surge in user engagement and a 25% increase in user retention
+
+## Run these commands
+
+## fill dotenv `.env` file
+
+```
+# rename .env.example to .env then fill all field
+
+# generate Token
+
+require('crypto').randomBytes(64).toString('hex')
+```
+
+### Install NPM dependencies
+
+`npm i`
 
 ## How to use
 
