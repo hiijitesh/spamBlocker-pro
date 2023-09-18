@@ -42,6 +42,7 @@ db.spam.belongsTo(db.user, {
     allowNull: false,
   },
 });
+
 // `hasMany` sets up a many-to-one relationship where the foreign key is on the target model (`user`)
 db.user.hasMany(db.spam, {
   as: "spamMarkedBy",
