@@ -7,9 +7,10 @@ function validatePassword(password) {
   return password.length >= 8;
 }
 
-function validatePhoneNumber(phone_number) {
+function validatePhoneNumber(phoneNumber) {
+  console.log(phoneNumber);
   const phoneValidatorRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
-  return phoneValidatorRegex.test(phone_number);
+  return phoneValidatorRegex.test(phoneNumber);
 }
 
 function validateEmail(email) {

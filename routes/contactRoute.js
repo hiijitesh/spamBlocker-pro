@@ -3,6 +3,6 @@ const router = require("express").Router();
 
 router.post("/add-contact", contactController.addNewContact);
 router.post("/mark-spam", contactController.markContactAsSpam);
-router.get("/search-contact", contactController.searchContact);
+router.get("/search", contactController.searchContact);
 
 module.exports = router;

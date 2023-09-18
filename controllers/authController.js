@@ -17,7 +17,7 @@ function generateJWTToken(user, token_type) {
 
   if (token_type === "access") {
     token = jwt.sign({ phone: user.phone, id: user.id }, process.env.ACCESS_TOKEN, {
-      expiresIn: "30m",
+      expiresIn: "30days",
     });
   } else {
     token = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN);

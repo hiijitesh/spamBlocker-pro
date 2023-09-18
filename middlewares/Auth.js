@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const jwt = require("jsonwebtoken");
 
 function verifyToken(jwt_token) {
@@ -25,7 +24,7 @@ function isAuthenticated(req, res, next) {
 
   if (!token) {
     return res.status(401).json({
-      error: "You are not authorized",
+      error: "Please provide valid token",
     });
   }
 
@@ -33,7 +32,7 @@ function isAuthenticated(req, res, next) {
 
   if (Object.keys(decoded).length === 0) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorized Access",
     });
   }
 

@@ -9,36 +9,31 @@ const Spam = db.spam;
 
 // search any contact in database for spam detection
 async function searchContact(req, res) {
-  const searchedName = req.body.searchedName;
-  const searchedPhoneNumber = req.body.searchedPhoneNumber;
+  const { name, phoneNumber } = req.body;
 
-  if (!searchedName && !searchedPhoneNumber) {
-    res.status(400).json({ error: "Empty Search Name/Search Phone." });
-    return;
+  if (!name || !phoneNumber) {
+    return res.status(400).json({ error: "Empty Search Name or Search Phone." });
   }
 
-  if (searchedName && !helper.validateName(searchedName)) {
-    res.status(400).json({ error: "Invalid searched name." });
-    return;
+  if (name && !helper.validateName(name)) {
+    return res.status(400).json({ error: "Invalid searched name." });
   }
 
-  if (searchedPhoneNumber && !helper.validatePhoneNumber(searchedPhoneNumber)) {
-    res.status(400).json({ error: "Invalid searched phone number." });
-    return;
+  if (phoneNumber && !helper.validatePhoneNumber(phoneNumber)) {
+    return res.status(400).json({ error: "Invalid searched phone number." });
   }
 
   try {
-    if (searchedName) {
+    if (name) {
       const usersData = await User.findAll({
         attributes: ["id", "name", "phone"],
         where: {
-          [Op.or]: [{ name: { [Op.startsWith]: searchedName } }, { name: { [Op.substring]: searchedName } }],
+          [Op.or]: [{ name: { [Op.startsWith]: name } }, { name: { [Op.substring]: name } }],
         },
       });
 
       if (!usersData || usersData.length == 0) {
-        res.status(400).json({ error: "No user found." });
-        return;
+        return res.status(400).json({ error: "No user found." });
       }
 
       const search_results = [];
@@ -53,19 +48,17 @@ async function searchContact(req, res) {
         search_results.push(temporary_user);
       }
 
-      res.status(200).json(search_results);
-      return;
+      return res.status(200).json(search_results);
     } else {
       const searched_user = await User.findOne({
         attributes: ["id", "name", "phone", "email"],
         where: {
-          phone: searchedPhoneNumber,
+          phone: phoneNumber,
         },
       });
 
       if (!searched_user) {
-        res.status(400).json({ error: "No user found." });
-        return;
+        return res.status(400).json({ error: "No user found." });
       }
 
       if (searched_user && searched_user.name !== "NULL") {
@@ -87,8 +80,7 @@ async function searchContact(req, res) {
           searched_user.email = null;
         }
 
-        res.status(200).send(searched_user);
-        return;
+        return res.status(200).send(searched_user);
       } else {
         const searched_contacts = await Contact.findAll({
           attributes: ["contactName"],
@@ -100,20 +92,17 @@ async function searchContact(req, res) {
         });
 
         const search_results = [{ spammedBy: spam_count }, searched_contacts];
-        res.status(200).send(search_results);
-        return;
+        return res.status(200).send(search_results);
       }
     }
   } catch (error) {
-    res.status(500).json({ error: "Search failed. Try again" });
-    return;
+    return res.status(500).json({ error: "Search failed. Try again" });
   }
 }
 
 // Adding new contact to db
 async function addNewContact(req, res) {
-  const contactPhoneNumber = req.body.contactPhoneNumber;
-  const contactName = req.body.contactName;
+  const { contactName, contactPhoneNumber } = req.body;
   const savedByUserId = req.userInfo.id;
 
   if (
@@ -122,10 +111,9 @@ async function addNewContact(req, res) {
     !helper.validatePhoneNumber(contactPhoneNumber) ||
     !helper.validateName(contactName)
   ) {
-    res.status(400).json({
+    return res.status(400).json({
       error: "Invalid Contact Name/Contact Phone Number.",
     });
-    return;
   }
 
   try {
@@ -167,7 +155,7 @@ async function addNewContact(req, res) {
 async function markContactAsSpam(req, res) {
   const phoneNumber = req.body.phoneNumber;
   const spamMarkedById = req.userInfo.id;
-
+  console.log(phoneNumber);
   if (!phoneNumber || !helper.validatePhoneNumber(phoneNumber)) {
     res.status(400).json({ error: "Invalid phone number." });
     return;
@@ -191,7 +179,7 @@ async function markContactAsSpam(req, res) {
         spamMarkedBy: spamMarkedById,
       });
 
-      res.status(201).json({ message: "Marked as spam successfully." });
+      return res.status(201).json({ message: "Marked as spam successfully." });
     } else {
       const spammedUserId = existingUser.id;
 
@@ -203,7 +191,7 @@ async function markContactAsSpam(req, res) {
       });
 
       if (existingSpam) {
-        res.status(400).json({
+        return res.status(400).json({
           error: "You have already marked this user as spam.",
         });
       }
@@ -213,7 +201,7 @@ async function markContactAsSpam(req, res) {
         spamMarkedById: spamMarkedById,
       });
 
-      res.status(201).json({ message: "Marked as spam successfully." });
+      return res.status(201).json({ message: "Marked as spam successfully." });
     }
   } catch (error) {
     res.status(500).json({ error: "Marking spam failed. Try again." });
