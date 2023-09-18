@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require("express");
+const PORT = process.env.PORT || 6500;
 
 const { dbConnection } = require("./database/dbConfig");
 
@@ -17,8 +18,8 @@ app.use(AuthMiddleware, contactRoutes);
 
 dbConnection()
   .then(function () {
-    app.listen(3000, function () {
-      console.log("Server has started!");
+    app.listen(PORT, function () {
+      console.log(`Server is running on the port ${PORT}`);
     });
   })
   .catch(function (error) {
