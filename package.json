@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app",
+    "start": "node app",
     "test": "npx jest --passWithNoTests",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint-and-fix": "eslint . --ext .js --fix",

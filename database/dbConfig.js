@@ -74,7 +74,7 @@ async function dbConnection() {
     // Use the `sync()` method to sync the models with the database.
     // The `force` option determines whether to drop and recreate the tables (true) or simply create them if they don't exist (false).
     await db.sequelize.sync({ force: false });
-    console.log("Database synced ✅✅✅ ");
+    console.log("Database synced ✅ ");
   } catch (error) {
     throw new Error(error);
   }
