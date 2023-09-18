@@ -2,84 +2,47 @@
 require("dotenv").config();
 const { Sequelize, DataTypes } = require("sequelize");
 
-// Create a new instance of `Sequelize` with configuration options for connecting to the database.
-const sequelize = new Sequelize(
-  process.env.DATABASE_NAME,
-  process.env.DATABASE_USER_NAME,
-  process.env.DATABASE_PASSWORD,
-  {
-    host: "localhost",
-    dialect: "mysql",
-  },
-);
-
-const db = {
-  sequelize: sequelize,
-  Sequelize: Sequelize,
+// Database configuration
+const dbConfig = {
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USER_NAME,
+  password: process.env.DATABASE_PASSWORD,
+  host: "localhost",
+  port: 5432,
+  dialect: "postgres",
 };
 
-// Define the models instances and store them in the `db` object.
-db.contact = require("../models/contactModel")(sequelize, DataTypes);
-db.refreshToken = require("../models/refreshTokenModel")(sequelize, DataTypes);
-db.spam = require("../models/spamModel")(sequelize, DataTypes);
-db.user = require("../models/userModel")(sequelize, DataTypes);
+// Create a Sequelize instance
+const sequelize = new Sequelize(dbConfig);
 
-// Set up the associations between the models using Sequelize's association methods.
-// `belongsTo` sets up a one-to-many relationship where the foreign key is on the source model (`spam` or `contact`)
-db.spam.belongsTo(db.user, {
-  as: "spamMarkedBy",
-  foreignKey: {
-    allowNull: false,
-  },
-});
+// Define models and associations
+const User = require("../models/userModel")(sequelize, DataTypes);
+const Spam = require("../models/spamModel")(sequelize, DataTypes);
+const Contact = require("../models/contactModel")(sequelize, DataTypes);
+const RefreshToken = require("../models/refreshTokenModel")(sequelize, DataTypes);
 
-db.spam.belongsTo(db.user, {
-  as: "spammedUser",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-// `hasMany` sets up a many-to-one relationship where the foreign key is on the target model (`user`)
-db.user.hasMany(db.spam, {
-  as: "spamMarkedBy",
-  foreignKey: "spamMarkedById",
-});
+// Define associations
+Spam.belongsTo(User, { as: "spamMarkedBy", foreignKey: { allowNull: false } });
+Spam.belongsTo(User, { as: "spammedUser", foreignKey: { allowNull: false } });
 
-db.user.hasMany(db.spam, {
-  as: "spammedUser",
-  foreignKey: "spammedUserId",
-});
+User.hasMany(Spam, { as: "spamMarkedBy", foreignKey: "spamMarkedById" });
+User.hasMany(Spam, { as: "spammedUser", foreignKey: "spammedUserId" });
 
-db.contact.belongsTo(db.user, {
-  as: "savedContact",
-  foreignKey: {
-    allowNull: false,
-  },
-});
+Contact.belongsTo(User, { as: "savedContact", foreignKey: { allowNull: false } });
+Contact.belongsTo(User, { as: "savedByUser", foreignKey: { allowNull: false } });
 
-db.contact.belongsTo(db.user, {
-  as: "savedByUser",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-
-// Define an asynchronous function called `dbConnection` to connect to the database and sync the models.
+// Database connection and synchronization
 async function dbConnection() {
   try {
     await sequelize.authenticate();
-    console.log("Database connected ✅✅✅ ");
+    console.log("Database connected ✅");
 
-    // Use the `sync()` method to sync the models with the database.
-    // The `force` option determines whether to drop and recreate the tables (true) or simply create them if they don't exist (false).
-    await db.sequelize.sync({ force: false });
-    console.log("Database synced ✅✅✅ ");
+    await sequelize.sync({ force: false });
+    console.log("Database synced ✅");
   } catch (error) {
-    throw new Error(error);
+    console.error("Database connection error:", error.message);
+    throw error;
   }
 }
 
-module.exports = {
-  db,
-  dbConnection,
-};
+module.exports = { User, Spam, Contact, RefreshToken, dbConnection };

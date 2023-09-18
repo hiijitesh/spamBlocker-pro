@@ -2,7 +2,7 @@
 const express = require("express");
 
 const { dbConnection } = require("./database/dbConfig");
-
+const PORT = process.env.PORT || 65000;
 const app = express();
 
 const authenticationRoutes = require("./routes/authRoute");
@@ -12,13 +12,12 @@ const AuthMiddleware = require("./middlewares/Auth");
 app.use(express.json());
 
 app.use(authenticationRoutes);
-// app.use(isAuthenticated);
 app.use(AuthMiddleware, contactRoutes);
 
 dbConnection()
   .then(function () {
-    app.listen(3000, function () {
-      console.log("Server has started!");
+    app.listen(PORT, function () {
+      console.log(`Server has started on port ${PORT}`);
     });
   })
   .catch(function (error) {

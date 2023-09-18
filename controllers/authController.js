@@ -1,15 +1,10 @@
 require("dotenv").config();
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// to validate email, phone, password
 const helper = require("../helpers/validator");
-
 // DB instance of mysql
-const { db } = require("../database/dbConfig");
-const User = db.user;
-const JWTRefreshToken = db.refreshToken;
+const { User, RefreshToken } = require("../database/dbConfig");
 
 // This function is used for generating or signing JWT token.
 function generateJWTToken(user, token_type) {
@@ -113,7 +108,7 @@ async function userLogin(req, res) {
 
     const access_token = generateJWTToken(user, "access");
     const refresh_token = generateJWTToken(user, "refresh");
-    await JWTRefreshToken.create({ token: refresh_token });
+    await RefreshToken.create({ token: refresh_token });
 
     res.status(200).json({
       access_token,
@@ -136,7 +131,7 @@ async function getAccessToken(req, res) {
   }
 
   try {
-    const currentRefreshToken = await JWTRefreshToken.findOne({
+    const currentRefreshToken = await RefreshToken.findOne({
       where: { token: refresh_token },
     });
 
@@ -170,7 +165,7 @@ async function userLogout(req, res) {
   }
 
   try {
-    const currentRefreshToken = await JWTRefreshToken.findOne({
+    const currentRefreshToken = await RefreshToken.findOne({
       where: { token: refresh_token },
     });
 
