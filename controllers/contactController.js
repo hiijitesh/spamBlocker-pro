@@ -140,7 +140,7 @@ async function addNewContact(req, res) {
     }
 
     await Contact.create({
-      contactName: contactName,
+      name: contactName,
       savedByUserId: savedByUserId,
       savedContactId: savedContactId,
     });
@@ -155,7 +155,6 @@ async function addNewContact(req, res) {
 async function markContactAsSpam(req, res) {
   const phoneNumber = req.body.phoneNumber;
   const spamMarkedById = req.userInfo.id;
-  console.log(phoneNumber);
   if (!phoneNumber || !helper.validatePhoneNumber(phoneNumber)) {
     res.status(400).json({ error: "Invalid phone number." });
     return;
