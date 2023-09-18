@@ -3,7 +3,7 @@ require("dotenv").config();
 const { Sequelize, DataTypes } = require("sequelize");
 
 // Create a new instance of `Sequelize` with configuration options for connecting to the database.
-const sequelize = new Sequelize(
+const sequelizeInstance = new Sequelize(
   process.env.DATABASE_NAME,
   process.env.DATABASE_USER_NAME,
   process.env.DATABASE_PASSWORD,
@@ -15,15 +15,17 @@ const sequelize = new Sequelize(
 );
 
 const db = {
-  sequelize: sequelize,
+  sequelize: sequelizeInstance,
   Sequelize: Sequelize,
 };
 
 // Define the models instances and store them in the `db` object.
-db.contact = require("../models/contactModel")(sequelize, DataTypes);
-db.refreshToken = require("../models/refreshTokenModel")(sequelize, DataTypes);
-db.spam = require("../models/spamModel")(sequelize, DataTypes);
-db.user = require("../models/userModel")(sequelize, DataTypes);
+// these are IIFE
+// immediately invoked function expression (IIFE) is used to initialize the model by passing two arguments: the sequelize instance (sequelizeInstance created) and the DataTypes object from Sequelize.
+db.contact = require("../models/contactModel")(sequelizeInstance, DataTypes);
+db.refreshToken = require("../models/refreshTokenModel")(sequelizeInstance, DataTypes);
+db.spam = require("../models/spamModel")(sequelizeInstance, DataTypes);
+db.user = require("../models/userModel")(sequelizeInstance, DataTypes);
 
 // Set up the associations between the models using Sequelize's association methods.
 // `belongsTo` sets up a one-to-many relationship where the foreign key is on the source model (`spam` or `contact`)
@@ -68,7 +70,7 @@ db.contact.belongsTo(db.user, {
 // Define an asynchronous function called `dbConnection` to connect to the database and sync the models.
 async function dbConnection() {
   try {
-    await sequelize.authenticate();
+    await sequelizeInstance.authenticate();
     console.log("Database connected ✅✅✅ ");
 
     // Use the `sync()` method to sync the models with the database.
