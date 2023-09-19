@@ -1,29 +1,9 @@
 require("dotenv").config();
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
-// to validate email, phone, password
 const helper = require("../helpers/validator");
 
-// DB instance of mysql
-const { db } = require("../database/dbConfig");
-const User = db.user;
-const JWTRefreshToken = db.refreshToken;
-
-// This function is used for generating or signing JWT token.
-function generateJWTToken(user, token_type) {
-  let token;
-
-  if (token_type === "access") {
-    token = jwt.sign({ phone: user.phone, id: user.id }, process.env.ACCESS_TOKEN, {
-      expiresIn: "30days",
-    });
-  } else {
-    token = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN);
-  }
-  return token;
-}
+const { User, JWTRefreshToken } = require("../database/dbConfig");
 
 // User signup function
 async function userSignup(req, res) {
@@ -75,7 +55,7 @@ async function userSignup(req, res) {
       await User.create(newUser);
     }
 
-    res.status(201).json({ message: "User created successfully" });
+    return res.status(201).json({ message: "User created successfully" });
   } catch (error) {
     res.status(500).json({ error: "User signup failed." });
     return;
@@ -115,10 +95,10 @@ async function userLogin(req, res) {
     const refresh_token = generateJWTToken(user, "refresh");
     await JWTRefreshToken.create({ token: refresh_token });
 
-    res.status(200).json({
+    return res.status(200).json({
+      message: "Login successful",
       access_token,
       refresh_token,
-      message: "Login successful",
     });
   } catch (error) {
     res.status(500).json({ error: "Login failed. Try again!" });
@@ -147,10 +127,10 @@ async function getAccessToken(req, res) {
 
     const new_access_token = generateJWTToken(currentRefreshToken, "access");
 
-    res.status(200).json({
+    return res.status(200).json({
+      message: "New access token generation success.",
       new_access_token,
       refresh_token,
-      message: "New access token generation success.",
     });
   } catch (error) {
     res.status(500).json({
@@ -182,6 +162,7 @@ async function userLogout(req, res) {
     await currentRefreshToken.destroy();
 
     res.status(200).json({ message: "Logout successful" });
+    return;
   } catch (error) {
     res.status(500).json({ error: "Logout failed. Try again" });
     return;
@@ -209,13 +190,27 @@ async function addUserEmail(req, res) {
 
     await User.update({ email }, { where: { id: existingUser.id } });
 
-    res.status(201).json({ message: "Email added successfully." });
+    return res.status(201).json({ message: "Email added successfully." });
   } catch (error) {
     res.status(500).json({ error: "Adding the email failed. Try again" });
     return;
   }
 }
+// This function is used for generating or signing JWT token.
+function generateJWTToken(user, token_type) {
+  let token;
 
+  if (token_type === "access") {
+    token = jwt.sign({ phone: user.phone, id: user.id }, process.env.ACCESS_TOKEN, {
+      expiresIn: "24h",
+    });
+  } else if (token_type === "refresh") {
+    token = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN, {
+      expiresIn: "30days",
+    });
+  }
+  return token;
+}
 module.exports = {
   userSignup,
   userLogin,

@@ -83,7 +83,16 @@ async function dbConnection() {
   }
 }
 
+const User = db.user;
+const Contact = db.contact;
+const Spam = db.spam;
+const JWTRefreshToken = db.refreshToken;
+
 module.exports = {
   db,
   dbConnection,
+  User,
+  Contact,
+  Spam,
+  JWTRefreshToken,
 };
