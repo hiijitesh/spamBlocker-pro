@@ -7,7 +7,7 @@ echo "Version: " $date
 json -I -f package.json -e "this.version=\"$date\""
 echo "Build complete"
 echo "Pushing to docker hub"
-docker build -t hiijitesh/spam-blocker:$date .
+docker build -t hiijitesh/spam-blocker:$date . --platform linux/amd64
 docker push hiijitesh/spam-blocker:$date
 echo "start docker-compose"
 docker-compose down && docker-compose up -d
