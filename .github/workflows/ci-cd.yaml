@@ -3,7 +3,7 @@ name: CI/CD Pipeline for Spam-Blocker
 on:
   push:
     branches:
-      - dev # Change this to the appropriate branch name
+      - main # Change this to the appropriate branch name
 
 jobs:
   build:
