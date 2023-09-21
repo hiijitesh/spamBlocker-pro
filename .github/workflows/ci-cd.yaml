@@ -32,8 +32,8 @@ jobs:
           date=$(date +%d.%m.%Y)
           echo "Building..."
           echo "Date"  $date
-          echo "checkout to dev"
-          git checkout dev
+          echo "checkout to main"
+          git checkout main
           echo "Version: " $date 
           echo "Docker Build Started"
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date .
