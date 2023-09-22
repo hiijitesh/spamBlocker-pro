@@ -27,15 +27,6 @@ db.refreshToken = require("../models/refreshTokenModel")(sequelizeInstance, Data
 db.spam = require("../models/spamModel")(sequelizeInstance, DataTypes);
 db.user = require("../models/userModel")(sequelizeInstance, DataTypes);
 
-// Set up the associations between the models using Sequelize's association methods.
-// `belongsTo` sets up a one-to-many relationship where the foreign key is on the source model (`spam` or `contact`)
-db.spam.belongsTo(db.user, {
-  as: "spamMarkedBy",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-
 db.spam.belongsTo(db.user, {
   as: "spammedUser",
   foreignKey: {
@@ -49,26 +40,7 @@ db.user.hasMany(db.spam, {
   foreignKey: "spamMarkedById",
 });
 
-db.user.hasMany(db.spam, {
-  as: "spammedUser",
-  foreignKey: "spammedUserId",
-});
-
-db.contact.belongsTo(db.user, {
-  as: "savedContact",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-
-db.contact.belongsTo(db.user, {
-  as: "savedByUser",
-  foreignKey: {
-    allowNull: false,
-  },
-});
-
-// Define an asynchronous function called `dbConnection` to connect to the database and sync the models.
+// Database connection and synchronization
 async function dbConnection() {
   try {
     await sequelizeInstance.authenticate();
@@ -79,7 +51,8 @@ async function dbConnection() {
     await db.sequelize.sync({ force: false });
     console.log("Database synced ✅ ");
   } catch (error) {
-    throw new Error(error);
+    console.error("Database connection error:", error.message);
+    throw error;
   }
 }
 

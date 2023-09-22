@@ -1,16 +1,35 @@
 version: "3"
 services:
   app:
+    image: spam-blocker2.0
     build: .
     ports:
-      - "6062:6062"
+      - "6500:6500"
     depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DATABASE_USER_NAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: spamdb
+    links:
       - db
     volumes:
       - .:/app:z
   db:
-    image: mysql:5.7
-    container_name: mysql
+    image: postgres:14.9-alpine3.18
+    restart: always
+    container_name: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: spamdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: spamdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

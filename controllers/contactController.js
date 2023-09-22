@@ -2,7 +2,6 @@ const { User, Contact, Spam } = require("../database/dbConfig");
 const { Op } = require("sequelize");
 
 const helper = require("../helpers/validator");
-
 // search any contact in database for spam detection
 async function searchContact(req, res) {
   const { name, phoneNumber } = req.body;

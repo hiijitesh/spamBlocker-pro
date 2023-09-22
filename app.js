@@ -3,7 +3,6 @@ const express = require("express");
 const PORT = process.env.PORT || 6500;
 
 const { dbConnection } = require("./database/dbConfig");
-
 const app = express();
 
 const authenticationRoutes = require("./routes/authRoute");
@@ -13,7 +12,6 @@ const AuthMiddleware = require("./middlewares/Auth");
 app.use(express.json());
 
 app.use(authenticationRoutes);
-// app.use(isAuthenticated);
 app.use(AuthMiddleware, contactRoutes);
 
 dbConnection()

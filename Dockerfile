@@ -4,11 +4,11 @@ FROM node:14-alpine
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
-# build dependencies
+# build dependenciess
 COPY ./package*.json ./
 USER node
 # dont install dev depedencies
-RUN npm install --omit=dev 
+RUN npm install --omit=dev
 
 # create static configuration for app
 # RUN echo "variableData=Dockerfile-Build" >> .env
@@ -16,7 +16,7 @@ RUN npm install --omit=dev
 # copy in source code
 COPY --chown=node:node ./ ./
 
-EXPOSE 6062
+EXPOSE 6500
 
 # start express server
 CMD [ "npm", "start" ]

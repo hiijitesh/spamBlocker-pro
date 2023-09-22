@@ -116,7 +116,7 @@ async function getAccessToken(req, res) {
   }
 
   try {
-    const currentRefreshToken = await JWTRefreshToken.findOne({
+    const currentRefreshToken = await RefreshToken.findOne({
       where: { token: refresh_token },
     });
 
@@ -150,7 +150,7 @@ async function userLogout(req, res) {
   }
 
   try {
-    const currentRefreshToken = await JWTRefreshToken.findOne({
+    const currentRefreshToken = await RefreshToken.findOne({
       where: { token: refresh_token },
     });
 
