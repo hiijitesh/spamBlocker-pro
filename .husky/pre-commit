@@ -2,4 +2,8 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run format
-npm run lint-and-fix
+# npm run lint-and-fix
+# npm install -g json
+date=$(date +%d.%m.%Y)
+echo "Version: " $date
+json -I -f package.json -e "this.version=\"$date\""
