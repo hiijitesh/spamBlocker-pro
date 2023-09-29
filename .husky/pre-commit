@@ -3,8 +3,8 @@
 
 date=$(date +%d.%m.%Y)
 echo "Version: " $date
-json -I -f package.json -e "this.version=\"$date\""
-git add .
+# json -I -f package.json -e "this.version=\"$date\""
+# git add .
 npm run format
 # npm run lint-and-fix
 # npm install -g json
