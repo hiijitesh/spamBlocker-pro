@@ -5,35 +5,35 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - dependencies🫂
-    assignees:
-      - "hiijitesh"
-    reviewers:
-      - "hiijitesh"
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      labels:
+          - dependencies🫂
+      assignees:
+          - "hiijitesh"
+      reviewers:
+          - "hiijitesh"
 
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - dependencies🫂
-    assignees:
-      - "hiijitesh"
-    reviewers:
-      - "hiijitesh"
+    - package-ecosystem: "docker"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      labels:
+          - dependencies🫂
+      assignees:
+          - "hiijitesh"
+      reviewers:
+          - "hiijitesh"
 
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - dependencies🫂
-    assignees:
-      - "hiijitesh"
-    reviewers:
-      - "hiijitesh"
+    - package-ecosystem: "pip"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      labels:
+          - dependencies🫂
+      assignees:
+          - "hiijitesh"
+      reviewers:
+          - "hiijitesh"

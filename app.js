@@ -15,11 +15,11 @@ app.use(authenticationRoutes);
 app.use(AuthMiddleware, contactRoutes);
 
 dbConnection()
-  .then(function () {
-    app.listen(PORT, function () {
-      console.log(`Server is running on the port ${PORT}`);
+    .then(function () {
+        app.listen(PORT, function () {
+            console.log(`Server is running on the port ${PORT}`);
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
     });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
