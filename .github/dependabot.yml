@@ -8,7 +8,7 @@ updates:
     - package-ecosystem: "github-actions"
       directory: "/"
       schedule:
-          interval: "daily"
+          interval: "monthly"
       labels:
           - dependencies🫂
       assignees:
@@ -19,7 +19,7 @@ updates:
     - package-ecosystem: "docker"
       directory: "/"
       schedule:
-          interval: "daily"
+          interval: "monthly"
       labels:
           - dependencies🫂
       assignees:
@@ -30,7 +30,7 @@ updates:
     - package-ecosystem: "pip"
       directory: "/"
       schedule:
-          interval: "daily"
+          interval: "monthly"
       labels:
           - dependencies🫂
       assignees:
