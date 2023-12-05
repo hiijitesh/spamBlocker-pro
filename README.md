@@ -1,4 +1,4 @@
-# Spam Blocker-Pro
+# Spam Blocker Pro
 
 SpamBlocker-Pro with spam caller identification.
 
