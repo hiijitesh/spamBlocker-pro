@@ -14,6 +14,7 @@ SpamBlocker-Pro Backend Clone with spam caller identification.
   the surge in user engagement and a 25% increase in user retention
 
 ## How to use
+
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
