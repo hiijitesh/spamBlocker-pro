@@ -12,19 +12,19 @@ SpamBlocker-Pro with spam caller identification.
 
 ## Run these commands
 
-## fill dotenv `.env` file
+### fill dotenv `.env` file
 
 ```
 # rename .env.example to .env then fill all field
 
-# generate Token
-
+#generate Token
 require('crypto').randomBytes(64).toString('hex')
+
+Install NPM dependencies
+npm i
 ```
 
-### Install NPM dependencies
 
-`npm i`
 
 ## How to use
 
@@ -33,6 +33,8 @@ require('crypto').randomBytes(64).toString('hex')
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
+
+<br>
 
 ### Postgres
 
@@ -59,46 +61,30 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ```
 
-Connect to a Database: `psql -d spamdb -U postgres`.
+<br>
+### Usefull Postgres commands
 
-Check Postgres Version:`SELECT VERSION();` or `postgres --version`
-
-List All Databases:`\l`
-
-Access or Switch a Database:`\c db_name`
-
-List All Tables:`\dt`
-
-Describe All Tables:`\d`
-
-Describe a Specific Table:`\d tab_name`
-
-List All Schemas:`\dn`
-
-List All Views:`\dv`
-
-List All Functions:`\df`
-
-List All Users:`\du`
-
-Show Commands History:`\s`
-
-Save Query’s Results to a Specific File:`\o file_name`
-
-Run psql Commands/queries From a Particular File:`\i file_name`
-
-Execute Previous Command:`\g`
-
-Show Query Execution Time:`\timing`
-
-Get Output in HTML Format:`\H`
-
-Align Columns Output:`\a`
-
-Get Help:`\h`
-
-Get All psql Commands:`\?`
-
-Clear Screen:`\! cls`
-
-Quit psql:`\q`
+| Task Description                                       | Command                                       |
+| ------------------------------------------------------- | --------------------------------------------- |
+| Connect to a Database                                   | `psql -d spamdb -U postgres`                  |
+| Check Postgres Version                                  | `SELECT VERSION();` or `postgres --version`  |
+| List All Databases                                      | `\l`                                          |
+| Access or Switch a Database                              | `\c db_name`                                  |
+| List All Tables                                          | `\dt`                                         |
+| Describe All Tables                                      | `\d`                                          |
+| Describe a Specific Table                                | `\d tab_name`                                 |
+| List All Schemas                                         | `\dn`                                         |
+| List All Views                                           | `\dv`                                         |
+| List All Functions                                       | `\df`                                         |
+| List All Users                                           | `\du`                                         |
+| Show Commands History                                   | `\s`                                          |
+| Save Query’s Results to a Specific File                 | `\o file_name`                                |
+| Run psql Commands/queries From a Particular File        | `\i file_name`                                |
+| Execute Previous Command                                 | `\g`                                          |
+| Show Query Execution Time                                | `\timing`                                     |
+| Get Output in HTML Format                                | `\H`                                          |
+| Align Columns Output                                    | `\a`                                          |
+| Get Help                                                | `\h`                                          |
+| Get All psql Commands                                    | `\?`                                          |
+| Clear Screen                                            | `! cls`                                       |
+| Quit psql                                               | `\q`                                          |
