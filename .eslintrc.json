@@ -36,10 +36,5 @@
         "default-param-last": ["error"],
         "prefer-template": "error",
         "require-await": "error"
-    },
-    "globals": {
-        "__config": true,
-        "__constant": true,
-        "__utils": true
     }
 }

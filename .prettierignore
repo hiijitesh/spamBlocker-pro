@@ -1,0 +1,57 @@
+# Ignore artifacts:
+build
+coverage
+.obsidian
+.trash
+DevOps
+package.json
+package-lock.json
+node_modules
+
+.husky/
+.github
+# Ignore all HTML files:
+*.html
+
+
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+**/*.html
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore built files
+dist/
+build/
+
+# Ignore coverage reports
+coverage/
+
+# Ignore configuration files
+.eslintignore
+.eslint*
+.stylelintignore
+.stylelintrc*
+prettier.config.js
+.prettierrc.js
+*.lintstage
+
+# Ignore log files
+*.log
+
+# Ignore test files
+__tests__/
+test/
+tests/
+*.test.js
+*.spec.js
+
+
+**/.git
+**/.svn
+**/.hg
+**/node_modules

@@ -23,8 +23,6 @@ Install NPM dependencies
 npm i
 ```
 
-
-
 ## How to use
 
 ### MySQL

@@ -14,7 +14,6 @@ npm install lint-staged -D
 # "pre-commit": "lint-staged"
 
 touch .lintstagedrc-prettier
-
 touch .lintstagedrc-eslint
 
 
