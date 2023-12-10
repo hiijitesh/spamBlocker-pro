@@ -1,4 +1,3 @@
-
 SpamBlocker-Pro with spam caller identification.
 
 -   Developed RESTful API using Node.js and Express.js for spam-blocking web application with MySQL database,
@@ -62,27 +61,27 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ### Usefull Postgres commands
 
-| Task Description                                       | Command                                       |
-| ------------------------------------------------------- | --------------------------------------------- |
-| Connect to a Database                                   | `psql -d spamdb -U postgres`                  |
-| Check Postgres Version                                  | `SELECT VERSION();` or `postgres --version`  |
-| List All Databases                                      | `\l`                                          |
-| Access or Switch a Database                              | `\c db_name`                                  |
-| List All Tables                                          | `\dt`                                         |
-| Describe All Tables                                      | `\d`                                          |
-| Describe a Specific Table                                | `\d tab_name`                                 |
-| List All Schemas                                         | `\dn`                                         |
-| List All Views                                           | `\dv`                                         |
-| List All Functions                                       | `\df`                                         |
-| List All Users                                           | `\du`                                         |
-| Show Commands History                                   | `\s`                                          |
-| Save Query’s Results to a Specific File                 | `\o file_name`                                |
-| Run psql Commands/queries From a Particular File        | `\i file_name`                                |
-| Execute Previous Command                                 | `\g`                                          |
-| Show Query Execution Time                                | `\timing`                                     |
-| Get Output in HTML Format                                | `\H`                                          |
-| Align Columns Output                                    | `\a`                                          |
-| Get Help                                                | `\h`                                          |
-| Get All psql Commands                                    | `\?`                                          |
-| Clear Screen                                            | `! cls`                                       |
-| Quit psql                                               | `\q`                                          |
+| Task Description                                 | Command                                     |
+| ------------------------------------------------ | ------------------------------------------- |
+| Connect to a Database                            | `psql -d spamdb -U postgres`                |
+| Check Postgres Version                           | `SELECT VERSION();` or `postgres --version` |
+| List All Databases                               | `\l`                                        |
+| Access or Switch a Database                      | `\c db_name`                                |
+| List All Tables                                  | `\dt`                                       |
+| Describe All Tables                              | `\d`                                        |
+| Describe a Specific Table                        | `\d tab_name`                               |
+| List All Schemas                                 | `\dn`                                       |
+| List All Views                                   | `\dv`                                       |
+| List All Functions                               | `\df`                                       |
+| List All Users                                   | `\du`                                       |
+| Show Commands History                            | `\s`                                        |
+| Save Query’s Results to a Specific File          | `\o file_name`                              |
+| Run psql Commands/queries From a Particular File | `\i file_name`                              |
+| Execute Previous Command                         | `\g`                                        |
+| Show Query Execution Time                        | `\timing`                                   |
+| Get Output in HTML Format                        | `\H`                                        |
+| Align Columns Output                             | `\a`                                        |
+| Get Help                                         | `\h`                                        |
+| Get All psql Commands                            | `\?`                                        |
+| Clear Screen                                     | `! cls`                                     |
+| Quit psql                                        | `\q`                                        |
