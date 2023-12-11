@@ -19,4 +19,4 @@ COPY --chown=node:node ./ ./
 EXPOSE 6500
 
 # start express server
-CMD [ "npm", "start" ]
+CMD [ "npm","run", "start" ]
