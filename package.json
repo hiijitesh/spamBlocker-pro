@@ -1,6 +1,6 @@
 {
   "name": "spam-blocker",
-  "version": "23.09.2023",
+  "version": "12.12.2023",
   "description": "",
   "main": "app.js",
   "scripts": {

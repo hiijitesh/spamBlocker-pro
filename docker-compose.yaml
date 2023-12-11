@@ -36,24 +36,24 @@
 
 version: "3"
 services:
-  postgres:
-    # image: postgres:latest
-    image: postgres:14.9-alpine3.18
-    restart: always
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
+    postgres:
+        # image: postgres:latest
+        image: postgres:14.9-alpine3.18
+        restart: always
+        environment:
+            POSTGRES_DB: mydatabase
+            POSTGRES_USER: myuser
+            POSTGRES_PASSWORD: mypassword
 
-  app:
-    build:
-      context: .
-    command: npm start
-    volumes:
-      - ./app:/home/node/app
-    ports:
-      - "6500:6500"
-    environment:
-      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
-    depends_on:
-      - postgres
+    app:
+        build:
+            context: .
+        command: npm start
+        volumes:
+            - ./app:/home/node/app
+        ports:
+            - "6500:6500"
+        environment:
+            DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+        depends_on:
+            - postgres
