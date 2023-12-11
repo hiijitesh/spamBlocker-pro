@@ -140,7 +140,7 @@ async function addNewContact(req, res) {
             savedContactId: savedContactId,
         });
 
-        res.status(201).json({ message: "Contact created successfully." });
+        return res.status(201).json({ message: "Contact created successfully." });
     } catch (error) {
         res.status(500).json({ error: "Saving contact failed. Try again." });
         return;
