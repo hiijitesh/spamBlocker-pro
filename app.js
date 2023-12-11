@@ -11,6 +11,11 @@ const AuthMiddleware = require("./middlewares/Auth");
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  const htmlContent = "<html><body><h1>Hello, Spammers!</h1></body></html>";
+  res.send(htmlContent);
+});
+
 app.use(authenticationRoutes);
 app.use(AuthMiddleware, contactRoutes);
 
