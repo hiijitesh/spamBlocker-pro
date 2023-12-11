@@ -1,4 +1,4 @@
-SpamBlocker-Pro with spam caller identification.
+# Spam Blocker Pro
 
 -   Developed RESTful API using Node.js and Express.js for spam-blocking web application with MySQL database,
     empowering users to report and search spam numbers.
@@ -23,8 +23,6 @@ npm i
 ```
 
 ## How to use
-
-### MySQL
 
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
