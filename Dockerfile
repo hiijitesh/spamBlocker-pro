@@ -1,22 +1,22 @@
 FROM node:14-alpine
 
-# create dir
+# Create directory
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
-# build dependenciess
-COPY ./package*.json ./
+# Copy package.json and package-lock.json first to leverage Docker cache
+COPY --chown=node:node ./package*.json ./
+
+# Switch to node user for dependency installation
 USER node
-# dont install dev depedencies
+
+# Install dependencies
 RUN npm install --omit=dev
 
-# create static configuration for app
-# RUN echo "variableData=Dockerfile-Build" >> .env
-
-# copy in source code
+# Copy source code
 COPY --chown=node:node ./ ./
 
 EXPOSE 6500
 
-# start express server
-CMD [ "npm","run", "start" ]
+# Start Express server
+CMD ["npm", "run", "start"]

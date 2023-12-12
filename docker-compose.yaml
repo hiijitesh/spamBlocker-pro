@@ -1,59 +1,33 @@
-# version: "3"
-# services:
-#   app:
-#     image: spam-blocker2.0
-#     build: .
-#     ports:
-#       - "6500:6500"
-#     depends_on:
-#       - db
-#     environment:
-#       NODE_ENV: production
-#       DB_HOST: db
-#       DB_PORT: 5432
-#       DATABASE_USER_NAME: postgres
-#       DATABASE_PASSWORD: postgres
-#       DATABASE_NAME: spamdb
-#     links:
-#       - db
-#     volumes:
-#       - .:/app:z
-#   db:
-#     image: postgres:14.9-alpine3.18
-#     restart: always
-#     container_name: postgres
-#     environment:
-#       POSTGRES_USER: postgres
-#       POSTGRES_PASSWORD: postgres
-#       POSTGRES_DB: spamdb
-#     ports:
-#       - "5432:5432"
-#     volumes:
-#       - db:/var/lib/postgresql/data
-# volumes:
-#   db:
-#     driver: local
-
 version: "3"
 services:
-    postgres:
-        # image: postgres:latest
-        image: postgres:14.9-alpine3.18
-        restart: always
-        environment:
-            POSTGRES_DB: mydatabase
-            POSTGRES_USER: myuser
-            POSTGRES_PASSWORD: mypassword
-
     app:
-        build:
-            context: .
-        command: npm start
-        volumes:
-            - ./app:/home/node/app
+        image: spam-blocker2.0
+        build: .
         ports:
             - "6500:6500"
-        environment:
-            DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
         depends_on:
-            - postgres
+            - db
+        environment:
+            # NODE_ENV: production
+            DB_HOST: db
+            DB_PORT: 5432
+            DATABASE_USER_NAME: postgres
+            DATABASE_PASSWORD: postgres
+            DATABASE_NAME: spamdb
+        volumes:
+            - .:/app:z
+    db:
+        image: postgres:14.9-alpine3.18
+        restart: always
+        container_name: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: spamdb
+        ports:
+            - "5432:5432"
+        volumes:
+            - db:/var/lib/postgresql/data
+volumes:
+    db:
+        driver: local
