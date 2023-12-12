@@ -89,6 +89,9 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 # build images from docker-compose.yaml
 docker-compose down && docker-compose up --build -d
 
+# remove docker compose images
+docker-compose down --remove-orphans
+
 # check both images
 docker-compose ps
 
