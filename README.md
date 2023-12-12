@@ -12,28 +12,29 @@
 
 ### fill dotenv `.env` file
 
-```
+```bash
 # rename .env.example to .env then fill all field
-
-#generate Token
+# generate Token
 require('crypto').randomBytes(64).toString('hex')
 
-Install NPM dependencies
+# install NPM dependencies
 npm i
 ```
 
-## How to use
+## How to use Database
 
+### MySQL
+
+```bash
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
+```
 
 ### Postgres
 
-#### Basic SQL Shell or psql Commands
-
-The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
-create new DATABASE
+> The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
+> create new DATABASE
 
 ```bash
 # enter into postresql
@@ -54,6 +55,8 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 ```
 
 ### Useful Postgres commands
+
+#### Usefull Postgres commands
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
