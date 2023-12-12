@@ -22,19 +22,17 @@ Install NPM dependencies
 npm i
 ```
 
-## How to use
-
+## How to use Database
+### MySQL
+```bash
 mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
-
-<br>
+```
 
 ### Postgres
 
-#### Basic SQL Shell or psql Commands
-
-The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
+>The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
 create new DATABASE
 
 ```bash
@@ -55,9 +53,7 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ```
 
-<br>
-
-### Usefull Postgres commands
+#### Usefull Postgres commands
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
