@@ -1,7 +1,20 @@
 version: "3"
 services:
+    db:
+        image: postgres:14.9-alpine3.18
+        restart: always
+        container_name: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: spamdb
+        # ports:
+        #     - "5433:5432"
+        volumes:
+            - db:/var/lib/postgresql/data
     app:
         image: spam-blocker2.0
+        container_name: spam-app
         build: .
         ports:
             - "6500:6500"
@@ -16,18 +29,7 @@ services:
             DATABASE_NAME: spamdb
         volumes:
             - .:/app:z
-    db:
-        image: postgres:14.9-alpine3.18
-        restart: always
-        container_name: postgres
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: spamdb
-        ports:
-            - "5432:5432"
-        volumes:
-            - db:/var/lib/postgresql/data
+
 volumes:
     db:
         driver: local

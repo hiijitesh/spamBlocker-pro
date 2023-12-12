@@ -28,8 +28,6 @@ mysql -h localhost -u root -p
 CREATE DATABASE spamdb;
 SHOW DATABASES;
 
-<br>
-
 ### Postgres
 
 #### Basic SQL Shell or psql Commands
@@ -55,9 +53,7 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ```
 
-<br>
-
-### Usefull Postgres commands
+### Useful Postgres commands
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
@@ -83,3 +79,35 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 | Get All psql Commands                            | `\?`                                        |
 | Clear Screen                                     | `! cls`                                     |
 | Quit psql                                        | `\q`                                        |
+
+### Docker
+
+```bash
+# build images from docker-compose.yaml
+docker-compose down && docker-compose up --build -d
+
+# check both images
+docker-compose ps
+
+# logs containers
+docker-compose logs app
+
+# realtime logs
+docker-compose logs -f
+
+# network connection test
+telnet db 5433
+
+# check container exists
+docker exec -it spam-app cat /etc/hosts
+docker exec -it postgres cat /etc/hosts
+
+# Ping Test Between Containers:
+docker exec -it spam-app ping postgres
+docker exec -it postgres ping spam-app
+
+# Check Container IP Addresses:
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spam-app
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres
+
+```

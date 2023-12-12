@@ -8,8 +8,8 @@ const sequelizeInstance = new Sequelize(
     process.env.DATABASE_USER_NAME,
     process.env.DATABASE_PASSWORD,
     {
-        host: "localhost",
-        port: "5432",
+        host: "db",
+        port: process.env.DB_PORT,
         dialect: "postgres",
     }
 );
@@ -44,7 +44,7 @@ db.user.hasMany(db.spam, {
 async function dbConnection() {
     try {
         await sequelizeInstance.authenticate();
-        console.log("Database connected ✅✅✅ ");
+        console.log(`Database connected to PORT ${process.env.DB_PORT}✅✅`);
 
         // Use the `sync()` method to sync the models with the database.
         // The `force` option determines whether to drop and recreate the tables (true) or simply create them if they don't exist (false).
