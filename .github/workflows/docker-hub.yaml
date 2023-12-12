@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Spam-Blocker
+name: docker hub push for Spam-Blocker
 
 on:
     push:

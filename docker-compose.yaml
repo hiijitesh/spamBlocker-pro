@@ -1,6 +1,6 @@
 version: "3"
 services:
-    db:
+    postgresdb:
         image: postgres:14.9-alpine3.18
         restart: always
         container_name: postgres
@@ -13,7 +13,7 @@ services:
         volumes:
             - db:/var/lib/postgresql/data
     app:
-        image: spam-blocker2.0
+        image: hiijitesh/spam-blocker:latest
         container_name: spam-app
         build: .
         ports:
