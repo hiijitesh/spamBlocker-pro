@@ -14,11 +14,10 @@
 
 ```
 # rename .env.example to .env then fill all field
-
-#generate Token
+# generate Token
 require('crypto').randomBytes(64).toString('hex')
 
-Install NPM dependencies
+# install NPM dependencies
 npm i
 ```
 
