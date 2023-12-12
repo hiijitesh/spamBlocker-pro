@@ -92,6 +92,9 @@ docker-compose down && docker-compose up --build -d
 # remove docker compose images
 docker-compose down --remove-orphans
 
+# stop docker compose images
+docker-compose stop
+
 # check both images
 docker-compose ps
 
