@@ -3,7 +3,7 @@ name: CI/CD Pipeline for Spam-Blocker
 on:
     push:
         branches:
-            - main # Change this to the appropriate branch name
+            - dev # Change this to the appropriate branch name
 
 jobs:
     build:
@@ -34,8 +34,8 @@ jobs:
                   date=$(date +%d.%m.%Y)
                   echo "Building..."
                   echo "Date"  $date
-                  echo "checkout to main"
-                  git checkout main
+                  echo "checkout to dev"
+                  git checkout dev
                   echo "Version: " $date
                   echo "Docker Build Started"
                   docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spam-blocker:$date .
