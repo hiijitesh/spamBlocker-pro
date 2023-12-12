@@ -19,10 +19,10 @@ services:
         ports:
             - "6500:6500"
         depends_on:
-            - db
+            - postgresdb
         environment:
             # NODE_ENV: production
-            DB_HOST: db
+            DB_HOST: postgresdb
             DB_PORT: 5432
             DATABASE_USER_NAME: postgres
             DATABASE_PASSWORD: postgres
