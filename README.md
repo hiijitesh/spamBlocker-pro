@@ -14,6 +14,7 @@
 
 ```bash
 # rename .env.example to .env then fill all field
+node
 # generate Token
 require('crypto').randomBytes(64).toString('hex')
 
