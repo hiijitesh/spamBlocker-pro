@@ -10,7 +10,7 @@
 
 ## Run these commands
 
-### fill `.env` file
+### fill up `.env` file
 
 ```bash
 # rename .env.example to .env then fill all field
