@@ -57,8 +57,6 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ### Useful Postgres commands
 
-#### Usefull Postgres commands
-
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
 | Connect to a Database                            | `psql -d spamdb -U postgres`                |
