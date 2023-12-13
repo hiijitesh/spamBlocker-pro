@@ -55,7 +55,7 @@ GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
 
 ```
 
-### Useful Postgres commands
+#### Useful Postgres commands
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
