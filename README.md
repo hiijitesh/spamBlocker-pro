@@ -15,6 +15,7 @@
 ```bash
 # rename .env.example to .env then fill all field
 node
+
 # generate Token
 require('crypto').randomBytes(64).toString('hex')
 
@@ -48,7 +49,7 @@ psql
 CREATE DATABASE spamdb;
 
 # create database with password
-CREATE USER spamdb WITH PASSWORD 'password';
+CREATE DATABASE spamdb WITH PASSWORD 'password';
 
 # grant all previllege
 GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
