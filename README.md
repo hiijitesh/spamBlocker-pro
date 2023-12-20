@@ -49,7 +49,7 @@ psql
 CREATE DATABASE spamdb;
 
 # create user with password (in single quote)
-CREATE USER "newuser" WITH PASSWORD 'password;
+CREATE USER "newuser" WITH PASSWORD 'password';
 
 # grant all privilege
 GRANT ALL PRIVILEGES ON USER "newuser" TO "postgres";
