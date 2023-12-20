@@ -48,11 +48,11 @@ psql
 # create database
 CREATE DATABASE spamdb;
 
-# create database with password
-CREATE DATABASE spamdb WITH PASSWORD 'password';
+# create user with password (in single quote)
+CREATE USER "newuser" WITH PASSWORD 'password;
 
-# grant all previllege
-GRANT ALL PRIVILEGES ON DATABASE spamdb TO myprojectuser;
+# grant all privilege
+GRANT ALL PRIVILEGES ON USER "newuser" TO "postgres";
 
 ```
 
