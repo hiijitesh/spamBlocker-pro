@@ -27,17 +27,16 @@ db.refreshToken = require("../models/refreshTokenModel")(sequelizeInstance, Data
 db.spam = require("../models/spamModel")(sequelizeInstance, DataTypes);
 db.user = require("../models/userModel")(sequelizeInstance, DataTypes);
 
+// `hasMany` sets up a many-to-one relationship where the foreign key is on the target model (`user`)
+db.user.hasMany(db.spam, {
+    as: "spamMarkedBy",
+    foreignKey: "spamMarkedById",
+});
 db.spam.belongsTo(db.user, {
     as: "spammedUser",
     foreignKey: {
         allowNull: false,
     },
-});
-
-// `hasMany` sets up a many-to-one relationship where the foreign key is on the target model (`user`)
-db.user.hasMany(db.spam, {
-    as: "spamMarkedBy",
-    foreignKey: "spamMarkedById",
 });
 
 // Database connection and synchronization
