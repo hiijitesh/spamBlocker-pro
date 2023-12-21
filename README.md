@@ -36,7 +36,8 @@ SHOW DATABASES;
 ### Postgres
 
 > The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
-> create new DATABASE
+
+-   create new DATABASE
 
 ```bash
 # enter into postresql
