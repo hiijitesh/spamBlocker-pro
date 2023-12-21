@@ -1,4 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-    const contact = sequelize.define("spam", {}, { timestamps: true });
-    return contact;
+    const spam = sequelize.define("spam", {}, { timestamps: true });
+    return spam;
 };

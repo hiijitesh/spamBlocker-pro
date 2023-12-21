@@ -8,9 +8,10 @@ const sequelizeInstance = new Sequelize(
     process.env.DATABASE_USER_NAME,
     process.env.DATABASE_PASSWORD,
     {
-        host: "postgresdb",
+        host: "localhost",
         port: process.env.DB_PORT,
         dialect: "postgres",
+        logging: false,
     }
 );
 
