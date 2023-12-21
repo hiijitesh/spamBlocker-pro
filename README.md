@@ -10,10 +10,12 @@
 
 ## Run these commands
 
-### fill dotenv `.env` file
+### fill up `.env`
 
 ```bash
 # rename .env.example to .env then fill all field
+node
+
 # generate Token
 require('crypto').randomBytes(64).toString('hex')
 
@@ -34,10 +36,11 @@ SHOW DATABASES;
 ### Postgres
 
 > The psql commands assist us in querying the data from the specified database interactively. Here are some of the most frequently used, most effective psql commands:
-> create new DATABASE
+
+-   create new DATABASE
 
 ```bash
-# enter into postresql
+# enter into postgres
 sudo su - postgres
 
 # enter into user  `postgres user`
@@ -46,17 +49,15 @@ psql
 # create database
 CREATE DATABASE spamapp;
 
-# create database with password
-CREATE USER spamapp WITH PASSWORD 'password';
+# create user with password (in single quote)
+CREATE USER "newuser" WITH PASSWORD 'password';
 
-# grant all previllege
-GRANT ALL PRIVILEGES ON DATABASE spamapp TO myprojectuser;
+# grant all privilege
+GRANT ALL PRIVILEGES ON USER "newuser" TO "postgres";
 
 ```
 
-### Useful Postgres commands
-
-#### Usefull Postgres commands
+#### Useful Postgres commands
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
