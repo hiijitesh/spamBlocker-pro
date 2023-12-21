@@ -29,16 +29,14 @@ db.spam = require("../models/spamModel")(sequelizeInstance, DataTypes);
 db.user = require("../models/userModel")(sequelizeInstance, DataTypes);
 
 // `hasMany` sets up a many-to-one relationship where the foreign key is on the target model (`user`)
-db.user.hasMany(db.spam, {
-    as: "spamMarkedBy",
-    foreignKey: "spamMarkedById",
-});
-db.spam.belongsTo(db.user, {
-    as: "spammedUser",
-    foreignKey: {
-        allowNull: false,
-    },
-});
+db.user.hasMany(db.spam, { as: "spamMarkedBy", foreignKey: "spammedById" });
+db.spam.belongsTo(db.user, { as: "spammedUser", foreignKey: "spammedById" });
+
+db.user.hasMany(db.spam, { foreignKey: "spammerId" });
+db.spam.belongsTo(db.user, { foreignKey: "spammerId" });
+
+db.user.hasMany(db.contact, { foreignKey: "userId" });
+db.contact.belongsTo(db.user, { foreignKey: "userId" });
 
 // Database connection and synchronization
 async function dbConnection() {
