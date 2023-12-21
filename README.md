@@ -29,7 +29,7 @@ npm i
 
 ```bash
 mysql -h localhost -u root -p
-CREATE DATABASE spamdb;
+CREATE DATABASE spamapp;
 SHOW DATABASES;
 ```
 
@@ -46,7 +46,7 @@ sudo su - postgres
 psql
 
 # create database
-CREATE DATABASE spamdb;
+CREATE DATABASE spamapp;
 
 # create user with password (in single quote)
 CREATE USER "newuser" WITH PASSWORD 'password';
@@ -60,7 +60,7 @@ GRANT ALL PRIVILEGES ON USER "newuser" TO "postgres";
 
 | Task Description                                 | Command                                     |
 | ------------------------------------------------ | ------------------------------------------- |
-| Connect to a Database                            | `psql -d spamdb -U postgres`                |
+| Connect to a Database                            | `psql -d spamapp -U postgres`               |
 | Check Postgres Version                           | `SELECT VERSION();` or `postgres --version` |
 | List All Databases                               | `\l`                                        |
 | Access or Switch a Database                      | `\c db_name`                                |
